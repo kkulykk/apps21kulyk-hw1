@@ -8,13 +8,14 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length = 0;
+    int MIN_VALUE = -273;
 
     public TemperatureSeriesAnalysis() {
     }
 
     public TemperatureSeriesAnalysis(@NonNull double[] temperatureSeries) {
         for (double temperatureSery : temperatureSeries) {
-            if (temperatureSery < -273) {
+            if (temperatureSery < MIN_VALUE) {
                 throw new InputMismatchException();
             }
         }
@@ -45,11 +46,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double min() {
-        return findTempClosestToValue(-1000);
+        return findTempClosestToValue(MIN_VALUE);
     }
 
     public double max() {
-        return findTempClosestToValue(1000);
+        int MAX_VALUE = 1000;
+        return findTempClosestToValue(MAX_VALUE);
     }
 
     public double findTempClosestToZero() {
@@ -118,7 +120,7 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double... temps) {
         for (double temp : temps) {
-            if (temp > 273) {
+            if (temp < MIN_VALUE) {
                 throw new InputMismatchException();
             }
         }
@@ -140,17 +142,4 @@ public class TemperatureSeriesAnalysis {
         return result;
     }
 
-    public static void main(String[] args) {
-        double[] arr =  {3.0, -5.0, 1.0, 5.0};
-        TemperatureSeriesAnalysis m = new TemperatureSeriesAnalysis(arr);
-        System.out.println(m.average());
-        System.out.println(m.deviation());
-        System.out.println(m.min());
-        System.out.println(m.max());
-        System.out.println(m.findTempClosestToZero());
-        System.out.println(m.findTempClosestToValue(6));
-        System.out.println(Arrays.toString(m.findTempsLessThen(3)));
-        System.out.println(Arrays.toString(m.findTempsGreaterThen(3)));
-        System.out.println(m.addTemps(5, 6, 1, 10, 10, 120));
-    }
 }
