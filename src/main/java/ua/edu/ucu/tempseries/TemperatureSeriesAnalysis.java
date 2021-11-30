@@ -8,18 +8,20 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length = 0;
-    private final int MIN_VALUE = -273;
+    private final int minValue = -273;
+    private final int maxValue = 10000;
 
     public TemperatureSeriesAnalysis() {
     }
 
     public TemperatureSeriesAnalysis(@NonNull double[] temperatureSeries) {
         for (double temperatures : temperatureSeries) {
-            if (temperatures < MIN_VALUE) {
+            if (temperatures < minValue) {
                 throw new InputMismatchException();
             }
         }
-        this.temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+        this.temperatureSeries = Arrays.copyOf(temperatureSeries,
+                temperatureSeries.length);
         length = temperatureSeries.length;
     }
 
@@ -40,18 +42,18 @@ public class TemperatureSeriesAnalysis {
         }
         double sd = 0;
         for (int i = 0; i < length; i++) {
-            sd += sd + ((temperatureSeries[i] - average())*
-                    (temperatureSeries[i] - average()));
+            sd += sd + ((temperatureSeries[i] - average())
+                    * (temperatureSeries[i] - average()));
         }
         return Math.sqrt(sd / length);
     }
 
     public double min() {
-        return findTempClosestToValue(MIN_VALUE);
+        return findTempClosestToValue(minValue);
     }
 
     public double max() {
-        int maxValue = 1000;
+
         return findTempClosestToValue(maxValue);
     }
 
@@ -121,7 +123,7 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double... temps) {
         for (double temp : temps) {
-            if (temp < MIN_VALUE) {
+            if (temp < minValue) {
                 throw new InputMismatchException();
             }
         }
