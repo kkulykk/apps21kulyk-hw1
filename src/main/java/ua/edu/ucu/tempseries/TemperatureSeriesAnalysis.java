@@ -42,7 +42,7 @@ public class TemperatureSeriesAnalysis {
         }
         double sd = 0;
         for (int i = 0; i < length; i++) {
-            sd += sd + ((temperatureSeries[i] - average())
+            sd += ((temperatureSeries[i] - average())
                     * (temperatureSeries[i] - average()));
         }
         return Math.sqrt(sd / length);

@@ -42,7 +42,7 @@ public class TemperatureSeriesAnalysisTest {
     @Test
     public void testDeviation() {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(new double[] {3.0, -5.0, 1.0, 5.0});
-        double expResult = 6.928203230275509;
+        double expResult = 3.7416573867739413;
         double actualResult = seriesAnalysis.deviation();
         assertEquals(expResult, actualResult, 0.00001);
     }
@@ -100,7 +100,7 @@ public class TemperatureSeriesAnalysisTest {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(new double[] {3.0, -5.0, 1.0, 5.0});
         TempSummaryStatistics tempSummaryStatistics = seriesAnalysis.summaryStatistics();
         assertEquals(1.0, tempSummaryStatistics.getAvgTemp(), 0.00001);
-        assertEquals(6.928203230275509, tempSummaryStatistics.getDevTemp(), 0.00001);
+        assertEquals(3.7416573867739413, tempSummaryStatistics.getDevTemp(), 0.00001);
         assertEquals(5.0, tempSummaryStatistics.getMaxTemp(), 0.00001);
         assertEquals(-5.0, tempSummaryStatistics.getMinTemp(), 0.00001);
     }
