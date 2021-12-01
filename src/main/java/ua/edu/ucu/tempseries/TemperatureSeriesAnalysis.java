@@ -9,7 +9,6 @@ public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length = 0;
     private final int minValue = -273;
-    private final int maxValue = 10000;
 
     public TemperatureSeriesAnalysis() {
     }
@@ -54,7 +53,7 @@ public class TemperatureSeriesAnalysis {
 
     public double max() {
 
-        return findTempClosestToValue(maxValue);
+        return findTempClosestToValue(Integer.MAX_VALUE);
     }
 
     public double findTempClosestToZero() {
